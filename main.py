@@ -1,8 +1,18 @@
-import standard.py
-import scientific.py
-import binary.py
+from standard import standard_calc
+from scientific import scientific_calc
+from binary import binary_calc
 
-print("Choose  mode ")
 print("1: Standard ")
 print("2: Scientific ")
-primt("3: Binary.py ")
+print("3: Base conversion")
+
+mode = int(input("Choose mode "))
+
+if mode == 1:
+    standard_calc()
+    
+if mode == 2:
+    scientific_calc()
+    
+if mode == 3:
+    binary_calc()
