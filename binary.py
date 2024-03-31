@@ -43,11 +43,13 @@ def conversion():
 
         # Convert binary to octal
         if base == "b":
+            decimal = int(str(binary), 2)
             octal_number = oct(decimal)[2:]
             print("Octal: ", octal_number)
 
         # Convert binary to hexadecimal
         if base == "c":
+            decimal = int(str(binary), 2)
             hexadec = hex(decimal)[2:]
             print("Hexadecimal: ", hexadec)
         
@@ -62,6 +64,7 @@ def conversion():
 
         # Convert octal to binary
         if base == "a":
+            decimal = int(octal, 8)
             binary_num = bin(decimal)[2:]
             print("Binary: ", binary_num)
 
@@ -72,6 +75,7 @@ def conversion():
 
         # Convert octal to hexadecimal
         if base == "c":
+            decimal = int(octal, 8)
             hexadec = hex(decimal)[2:]
             print("Hexadecimal: ", hexadec)
             
