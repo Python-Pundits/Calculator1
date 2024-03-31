@@ -130,6 +130,4 @@ def conversion():
     	hexa_to_base()
     if choice == 5:
     	quit()
-	
-while True:
-	conversion()
+
