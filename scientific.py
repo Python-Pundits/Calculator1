@@ -55,3 +55,38 @@ def factorial(a):
         return 1
     else:
         return n * factorial(a-1)
+
+
+function_dict1 = {
+    'sin'  : sin,
+    'cos'  : cos,
+    'tan'  : tan,
+    'asin' : asin,
+    'acos' : acos,
+    'atan' : atan,
+    'sqrt' : square_root,
+    'pi'   :pi,
+    'log'  :log,
+    'ln'   :ln,
+    'e'    :exp,
+    '!'    :factorial
+}
+
+function_dict2 = {
+    '^': power
+}
+
+def calculate(equation):
+    variable = equation.split()
+    for i in range(0,len(variable)):
+        if variable[i] in function_dict1:
+            print(function_dict1[variable[i]](int(variable[i + 1])))
+
+        elif variable[i] in function_dict2:
+            print(function_dict2[variable[i]](int(variable[i - 1]), (int(variable [i + 1]))))
+
+        else:
+            print(eval(variable[i]))
+
+equate = input('Input your equation')
+print (calculate (equate))
