@@ -74,6 +74,29 @@ def conversion():
         if base == "c":
             hexadec = hex(decimal)[2:]
             print("Hexadecimal: ", hexadec)
+            
+    def hexa_to_base():
+    	print("A: Binary ")
+    	print("B: Octal ")
+    	print("C: Decimal ")
+    	
+    	base = input("Enter Base: ").lower()
+    	hexa = input("Enter Hexa number: ")
+    	
+    	#Convert hexa to binary
+    	if base == "a":
+        	binary_num = bin(int(hexa, 16))[2:]
+        	print("Binary: ", binary_num)
+    	
+    	# Convert hexa to octal
+    	if base == "b":
+        	octal = oct(int(hexa,16))[2:]
+        	print("Octal: ", octal)
+    	
+    	#Convert hexa to binary
+    	if base == "c":
+        	decimal = int(hexa, 16)
+        	print("Decimal: ", decimal)
 
 
     print("Conversion of Bases")
@@ -99,6 +122,10 @@ def conversion():
         bin_to_base()
     if choice == 3:
     	oct_to_base()
+    if choice == 4:
+    	hexa_to_base()
+    if choice == 5:
+    	quit()
 	
 while True:
 	conversion()
