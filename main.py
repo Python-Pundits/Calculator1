@@ -1,6 +1,6 @@
 from standard import standard_calc
 from scientific import scientific_calc
-from binary import binary_calc
+from binary import conversion 
 
 print("1: Standard ")
 print("2: Scientific ")
