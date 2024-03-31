@@ -4,7 +4,7 @@ from binary import binary_calc
 
 print("1: Standard ")
 print("2: Scientific ")
-print("3: Base conversion")
+print("3: Binary Converter")
 
 mode = int(input("Choose mode "))
 
