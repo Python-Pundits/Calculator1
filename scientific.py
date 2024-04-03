@@ -186,6 +186,7 @@ print (' ')
 print ('h for help')
 print ('x to exit')
 print ('c to clear history')
+print (' ')
 
 exit = False
 
