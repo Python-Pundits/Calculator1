@@ -38,6 +38,10 @@ def power(a,b):
     result = a ** b
     return result
 
+def root(a,b):
+    result = b ** (1/a)
+    return result
+
 def square_root(a):
     result = math.sqrt(a)
 
@@ -75,7 +79,8 @@ function_dict1 = {
 }
 
 function_dict2 = {
-    '^': power
+    '^': power,
+    '√': root
 }
 
 function_dict3 = {
