@@ -145,7 +145,8 @@ def calculate(equation):
                 ans = operation(ans, int(variable[value]))
         
         else:
-            raise ValuError('input values correctly or type h for more info')
+            print('input not supported type h for help')
+
 
     print(ans)
 
