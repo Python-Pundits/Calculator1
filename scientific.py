@@ -102,8 +102,25 @@ def calculate(equation):
 
         elif variable[value] in function_dict2:
             if ans is None:
-                ans = function_dict2[variable[value]](int(variable[value - 1])), (int(variable[value + 1]))
-   
+                ans = function_dict2[variable[value]](int(variable[value - 1]), int(variable[value + 1]))
+            else:
+                if operation == operator.add:
+                    result = int(ans - int(variable[value - 1]))
+                    ans = operation(int(result), function_dict2[variable[value]](int(variable[value - 1]), int(variable[value + 1])))
+
+                if operation == operator.sub:
+                    result = int(ans + int(variable[value - 1]))
+                    ans = operation(int(result), function_dict2[variable[value]](int(variable[value - 1]), int(variable[value + 1])))
+
+                if operation == operator.mul:
+                    result = int(ans) / int(variable[value - 1])
+                    ans = operation(int(result), function_dict2[variable[value]](int(variable[value - 1]), int(variable[value + 1])))
+
+                if operation == operator.truediv:
+                    result = int(ans) * int(variable[value - 1])
+                    ans = operation(int(result), function_dict2[variable[value]](int(variable[value - 1]), int(variable[value + 1])))
+                print(result)
+
         elif variable[value] in function_dict3:
             if ans is None:
                 ans = function_dict3[variable[value]](variable[value - 1])
@@ -123,10 +140,6 @@ def calculate(equation):
                 if operation == operator.truediv:
                     result = int(ans) * int(variable[value - 1])
                     ans = operation(int(result), function_dict3[variable[value]](int(variable[value - 1])))
-                print(result)
-           # else:
-             #   ans = operation(ans, function_dict3[variable[value]](int(variable[value - 1])))
-
 
         elif variable[value] in operation_dict:
             operation = operation_dict[variable[value]]
@@ -143,10 +156,9 @@ def calculate(equation):
 
             else:
                 ans = operation(ans, int(variable[value]))
-        
+
         else:
             print('input not supported type h for help')
-
 
     print(ans)
 
@@ -158,7 +170,6 @@ def help():
     print ('* space must be added after inputing value assign to the function' )
     print ('* more functions coming')
     print ('* operation on integers can be used but spaces must be in between integers and operators (e.g 5 + 5)')
-    print (' ')
 
 print ('Functions')
 print ('sin   cos   tan')
@@ -173,6 +184,7 @@ print ('c to clear history')
 
 exit = False
 
+print(power(2,3))
 while exit == False:
     equate = input('')
     if equate == 'x' or equate == 'X':
