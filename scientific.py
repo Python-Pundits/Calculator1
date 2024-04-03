@@ -1,7 +1,6 @@
-def scientific_calc():
-    print("coming soon ")
-
-import math
+ import math
+import operator
+from IPython.display import clear_output
 
 def sin(a):
     result = math.sin(a)
@@ -42,20 +41,25 @@ def power(a,b):
 def square_root(a):
     result = math.sqrt(a)
 
-def pi():
-    result = 3.1415926535897932384626433832795028841971
+def pi(a):
+    if a is None:
+        result = 3.1415926535897932384626433832795028841971
+    else:
+        result = a * 3.1415926535897932384626433832795028841971
     return result
 
-def exp():
-    result = 2.7182818284590452353602874713526624977572
+def exp(a):
+    if a is None:
+        result = 2.7182818284590452353602874713526624977572
+    else:
+        result = a * 2.7182818284590452353602874713526624977572
     return result
 
 def factorial(a):
     if a == 1:
         return 1
     else:
-        return n * factorial(a-1)
-
+        return a * factorial(a-1)
 
 function_dict1 = {
     'sin'  : sin,
@@ -65,28 +69,130 @@ function_dict1 = {
     'acos' : acos,
     'atan' : atan,
     'sqrt' : square_root,
-    'pi'   :pi,
+    'π'    :pi,
     'log'  :log,
-    'ln'   :ln,
-    'e'    :exp,
-    '!'    :factorial
+    'ln'   :ln
 }
 
 function_dict2 = {
     '^': power
 }
 
+function_dict3 = {
+    'e'    :exp,
+    '!'    :factorial
+}
+
+operation_dict = {
+    '+': operator.add,
+    '-': operator.sub,
+    '*': operator.mul,
+    '/': operator.truediv
+}
 def calculate(equation):
     variable = equation.split()
-    for i in range(0,len(variable)):
-        if variable[i] in function_dict1:
-            print(function_dict1[variable[i]](int(variable[i + 1])))
+    ans = None
+    operation = operator.mul
+    for value in range(0, len(variable)):
+        if  variable[value] in function_dict1:
+            if ans is None:
+                ans = function_dict1[variable[value]](int(variable[value + 1]))
+            else:
+                ans = operation(ans, function_dict1[variable[value]](int(variable[value + 1])))
 
-        elif variable[i] in function_dict2:
-            print(function_dict2[variable[i]](int(variable[i - 1]), (int(variable [i + 1]))))
+        elif variable[value] in function_dict2:
+            if ans is None:
+                ans = function_dict2[variable[value]](int(variable[value - 1])), (int(variable[value + 1]))
+   
+        elif variable[value] in function_dict3:
+            if ans is None:
+                ans = function_dict3[variable[value]](variable[value - 1])
+            else:
+                if operation == operator.add:
+                    result = int(ans - variable[value - 1])
+                    ans = operation(int(result), function_dict3[variable[value]](int(variable[value - 1])))
 
+                if operation == operator.sub:
+                    result = int(ans + variable[value - 1])
+                    ans = operation(int(result), function_dict3[variable[value]](int(variable[value - 1])))
+
+                if operation == operator.mul:
+                    result = int(ans) / int(variable[value - 1])
+                    ans = operation(int(result), function_dict3[variable[value]](int(variable[value - 1])))
+
+                if operation == operator.truediv:
+                    result = int(ans) * int(variable[value - 1])
+                    ans = operation(int(result), function_dict3[variable[value]](int(variable[value - 1])))
+                print(result)
+           # else:
+             #   ans = operation(ans, function_dict3[variable[value]](int(variable[value - 1])))
+
+
+        elif variable[value] in operation_dict:
+            operation = operation_dict[variable[value]]
+
+        elif variable[value].isdigit():
+            if ans is None:
+                ans = int(variable[value])
+
+            elif variable[value - 1] in function_dict1:
+               pass
+
+            elif variable[value - 1] in function_dict2:
+               pass
+
+            else:
+                ans = operation(ans, int(variable[value]))
+        
         else:
-            print(eval(variable[i]))
+            raise ValuError('input values correctly or type h for more info')
 
-equate = input('Input your equation')
-print (calculate (equate))
+    print(ans)
+
+
+
+print (sin(60))
+def help():
+    print (' ')
+    print ('* Space must be added after inputing a value, operators, function')
+    print ('* space must be added after inputing value assign to the function' )
+    print ('* more functions coming')
+    print (' ')
+
+print ('Functions')
+print ('sin   cos   tan')
+print ('asin  acos  atan')
+print ('log   ln    e')
+print ('^     !     π')
+print (' ')
+print (' ')
+print ('h for help')
+print ('x to exit')
+print ('c to clear history')
+
+exit = False
+
+while exit == False:
+    equate = input('')
+    if equate == 'x' or equate == 'X':
+        print ('Good bye')
+        exit = True
+
+    elif equate == 'h' or equate == 'H':
+        print (help())
+
+    elif equate == 'c' or equate == 'C':
+        clear_output()
+        print ('Functions')
+        print ('sin   cos   tan')
+        print ('asin  acos  atan')
+        print ('log   ln    e')
+        print ('^     !     π')
+        print (' ')
+        print (' ')
+        print ('h for help')
+        print ('x to exit')
+        print ('c to clear history')
+
+    else:
+        print (calculate (equate))
