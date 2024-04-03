@@ -151,7 +151,6 @@ def calculate(equation):
 
 
 
-print (sin(60))
 def help():
     print (' ')
     print ('* Space must be added after inputing a value, operators, function')
