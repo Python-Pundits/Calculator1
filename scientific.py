@@ -1,4 +1,4 @@
- import math
+import math
 import operator
 from IPython.display import clear_output
 
@@ -154,9 +154,10 @@ def calculate(equation):
 
 def help():
     print (' ')
-    print ('* Space must be added after inputing a value, operators, function')
+    print ('* Spaces must be in between integers, operators, function')
     print ('* space must be added after inputing value assign to the function' )
     print ('* more functions coming')
+    print ('* operation on integers can be used but spaces must be in between integers and operators (e.g 5 + 5)')
     print (' ')
 
 print ('Functions')
